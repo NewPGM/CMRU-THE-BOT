@@ -32,7 +32,7 @@ async function getIntentsAndTrainingPhrasesFromDB() {
 }
 
 // ฟังก์ชันสำหรับดึงข้อมูลจากตาราง subject
-async function getCoursesFromDB() {
+async function getsubjectsFromDB() {
   try {
     const [subject] = await pool.query('SELECT * FROM subjects;');
     return subject;
@@ -42,7 +42,139 @@ async function getCoursesFromDB() {
   }
 }
 
+async function getLocationFromDB() {
+  try {
+    const [Locations] = await pool.query('SELECT * FROM Locations;');
+    return Locations;
+  } catch (error) {
+    console.error('Error fetching courses from database:', error);
+    throw new Error('Database query failed');
+  }
+}
+
+async function getcoursesFromDB() {
+  try {
+    const [courses] = await pool.query('SELECT * FROM courses;');
+    return courses;
+  } catch (error) {
+    console.error('Error fetching courses from database:', error);
+    throw new Error('Database query failed');
+  }
+}
+
+async function getDegreeProgramsFromDB() {
+  try {
+    const [degree_programs] = await pool.query('SELECT * FROM degree_programs;');
+    return degree_programs;
+  } catch (error) {
+    console.error('Error fetching courses from database:', error);
+    throw new Error('Database query failed');
+  }
+}
+
+async function getDepartmentHistoryFromDB() {
+  try {
+    const [department_history] = await pool.query('SELECT * FROM department_history;');
+    return department_history;
+  } catch (error) {
+    console.error('Error fetching courses from database:', error);
+    throw new Error('Database query failed');
+  }
+}
+
+
+// async function getIninsTructorsFromDB() {
+//   try {
+//     const [instructors] = await pool.query('SELECT * FROM instructors;');
+//     return instructors;
+//   } catch (error) {
+//     console.error('Error fetching courses from database:', error);
+//     throw new Error('Database query failed');
+//   }
+// }
+
+async function getInstructorsFromDB() {
+  try {
+    const query = `
+      SELECT 
+        itt.*, 
+        r.room_name
+      FROM 
+        instructors itt
+      LEFT JOIN
+        rooms r ON itt.room_id = r.room_id
+     
+    `;
+    const [instructors] = await pool.query(query);
+    return instructors;
+  } catch (error) {
+    console.error('Error fetching program subjects from database:', error);
+    throw new Error('Database query failed');
+  }
+}
+
+
+async function getProgramSubjectsFromDB() {
+  try {
+    const query = `
+      SELECT 
+        ps.*, 
+        s.subject_name, 
+        p.full_name,
+        s.subject_code
+      FROM 
+        program_subjects ps
+      JOIN 
+        subjects s ON ps.subject_id = s.subject_id
+      JOIN 
+        degree_programs p ON ps.program_id = p.program_id;
+    `;
+    const [programSubjects] = await pool.query(query);
+    return programSubjects;
+  } catch (error) {
+    console.error('Error fetching program subjects from database:', error);
+    throw new Error('Database query failed');
+  }
+}
+async function getresponsibilitiesFromDB() {
+  try {
+    const [responsibilities] = await pool.query('SELECT * FROM responsibilities;');
+    return responsibilities;
+  } catch (error) {
+    console.error('Error fetching courses from database:', error);
+    throw new Error('Database query failed');
+  }
+}
+
+async function getroomsFromDB() {
+  try {
+    const [rooms] = await pool.query('SELECT * FROM rooms;');
+    return rooms;
+  } catch (error) {
+    console.error('Error fetching courses from database:', error);
+    throw new Error('Database query failed');
+  }
+}
+
+async function getPhilosophyFromDB() {
+  try {
+    const [philosophy] = await pool.query('SELECT * FROM Philosophy;');
+    return philosophy;
+  } catch (error) {
+    console.error('Error fetching courses from database:', error);
+    throw new Error('Database query failed');
+  }
+}
 module.exports = {
   getIntentsAndTrainingPhrasesFromDB,
-  getCoursesFromDB,
+  getsubjectsFromDB,
+  getLocationFromDB,
+  getcoursesFromDB,
+  getDegreeProgramsFromDB,
+  getDepartmentHistoryFromDB,
+  getInstructorsFromDB,
+  getProgramSubjectsFromDB,
+  getresponsibilitiesFromDB,
+  getroomsFromDB,
+  getPhilosophyFromDB
 };
