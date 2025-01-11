@@ -18,8 +18,4 @@ const port = process.env.PORT || 7000;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
-<<<<<<< HEAD:api/app.js
-module.exports = app;
-=======
 //
->>>>>>> 9eab7c8d44cccb6a96614fdd2c0ba30479c07c43:app.js
