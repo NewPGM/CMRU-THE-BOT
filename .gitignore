@@ -14,3 +14,7 @@ build/
 # Ignore OS specific files
 .DS_Store
 Thumbs.db
+
+ngrok.exe
+ngrok.exe.old
+.vercel

@@ -1,15 +1,15 @@
 const { client } = require('../config/config');
 const stringSimilarity = require('string-similarity');
-const { getsubjectsFromDB } = require('../database/database');
-const { getLocationFromDB } = require('../database/database');
-const { getcoursesFromDB } = require('../database/database');
-const { getDegreeProgramsFromDB } = require('../database/database');
-const { getDepartmentHistoryFromDB } = require('../database/database');
-const { getInstructorsFromDB } = require('../database/database');
-const { getProgramSubjectsFromDB } = require('../database/database');
-const { getresponsibilitiesFromDB } = require('../database/database');
-const { getroomsFromDB } = require('../database/database');
-const { getPhilosophyFromDB } = require('../database/database');
+const { getsubjectsFromDB } = require('../services/database');
+const { getLocationFromDB } = require('../services/database');
+const { getcoursesFromDB } = require('../services/database');
+const { getDegreeProgramsFromDB } = require('../services/database');
+const { getDepartmentHistoryFromDB } = require('../services/database');
+const { getInstructorsFromDB } = require('../services/database');
+const { getProgramSubjectsFromDB } = require('../services/database');
+const { getresponsibilitiesFromDB } = require('../services/database');
+const { getroomsFromDB } = require('../services/database');
+const { getPhilosophyFromDB } = require('../services/database');
 
 // ฟังก์ชันจัดการกับ event ที่ได้รับจาก LINE
 async function handleEvent(event, intentsData) {

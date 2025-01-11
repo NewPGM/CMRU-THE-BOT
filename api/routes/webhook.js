@@ -1,7 +1,7 @@
 const express = require('express');
 const line = require('@line/bot-sdk');
-const { handleEvent } = require('../controllers/lineHandler');
-const { getIntentsAndTrainingPhrasesFromDB } = require('../database/database');
+const { handleEvent } = require('../routes/lineHandler');
+const { getIntentsAndTrainingPhrasesFromDB } = require('../services/database');
 const { config } = require('../config/config');
 
 const router = express.Router();
@@ -23,6 +23,8 @@ router.post('/', line.middleware(config), async (req, res) => {
     console.error('Error in webhook:', err);
     res.status(500).send('Error processing the webhook.');
   }
+  console.log('Event data:', events);
+  console.error('Error details:', err.message, err.stack);
 });
 
 module.exports = router;
